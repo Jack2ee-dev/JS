@@ -27,14 +27,33 @@ console.log(obj1) // -> {a:1, b:3, c:4}
 위의 코드의 mixin 함수에는 원본 객체가 접근자 프로퍼티를 가지고 있을 때 접근자 프로퍼티도 데이터 프로퍼티로 바꾸어 복사하는 문제가 있습니다.
 
 - 예)
+
+```
   var person1 = {
-  \_name: 'Tom',
+  _name: 'Tom',
   get name() {
-  return this.\_name;
+  return this._name;
   }
   };
   var person2 = {};
   mixin(person2, person1);
   person2.name = 'Huck';
   console.log(person2.name); // -> Huck
-  console.log(person2) // -> {\_name: 'Tom', name: 'Huck'}
+  console.log(person2) // -> {_name: 'Tom', name: 'Huck'}
+```
+
+mixin 함수가 person1 객체의 프로퍼티를 person2 객체에 복사할 때 단순히 새로운 프로퍼티를 대상 객체에 추가한 다음 원본 객체의 프로퍼티가 복사하는 시점에 가지고 있던 값을 할당해 버리기 때문입니다.
+객채의 접근자 프로퍼티를 다른 객체에 믹스인하려면 mixin 함수에서 프로퍼티를 생성할 때 아래와 같이 Object.defineProperty 메서드를 사용해야 합니다.
+
+- 예)
+
+```
+function mixin(target, source) {
+  var keys = Object.keys(source);
+  for (var i = 0; i < keys.length; i++) {
+    var descriptor = Object.getOwnPropertyDescriptor(source, keys[i]);
+    Object.defineProperty(target, keys[i], descriptor);
+  }
+  return target;
+}
+```
