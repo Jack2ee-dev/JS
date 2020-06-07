@@ -13,7 +13,7 @@
 - 객체 리터럴로 생성
 
 ```
-var card = { suit: '하트', rank: 'A'};
+var card = {suit: '하트', rank: 'A'};
 ```
 
 - 생성자로 생성
@@ -77,8 +77,8 @@ function Circle(center, radius) {
   this.center = center;
   this.radius = radius;
 
-  // Circle 생성자의 prototype 프로퍼티에 area 메서드 추가
-  Circle.prototype.area = function() {
+// Circle 생성자의 prototype 프로퍼티에 area 메서드 추가
+Circle.prototype.area = function() {
     return Math.PI*this.radius*this.radius;
   };
 }
@@ -87,4 +87,4 @@ var c2 = new Circle({x: 0, y: 1}, 3.0);
 var c3 = new Circle({x: 1, y: 0}, 1.0);
 ```
 
-위 코드의 인스턴스 c1, c2, c3 안에는 area 메서드가 존대하지 않지만 area 메서드를 사용할 수 있습니다.
+위 코드의 인스턴스 c1, c2, c3 안에는 area 메서드가 존재하지 않지만 area 메서드를 사용할 수 있습니다.
