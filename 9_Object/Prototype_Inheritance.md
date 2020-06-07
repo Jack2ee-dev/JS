@@ -172,3 +172,30 @@ console.log(Object.prototype.isPrototypeOf(obj)); // true
 console.log(F.prototype.isPrototypeOf(obj)); // true
 console.log(Date.prototype.isPrototypeOf(obj)); // false
 ```
+
+## Object.prototype
+
+Object.prototype의 메서드는 모든 내장 객체로 전파되며 모든 인스턴스에서 사용할 수 있습니다.
+
+1. Object 생성자
+   Object 생성자는 내장 생성자로 일반적인 객체를 생성합니다. Object 생성자를 인수 없이 실행하면 Object 생성자는 빈 객체를 생성합니다.
+   Object 생성자는 객체를 생성하는 것보다는 일반적인 객체를 조작하기 위한 메서드와 프로퍼티를 제공하고, Object.prototype으로 모든 내장 생성자 인스턴스에서 사용할 수 있는 메서드를 제공하는 것에 의의가 있습니다.
+
+2. Object 생성자의 프로퍼티와 메서드 & Object.prototype의 메서드
+   Link: [MDN][https://developer.mozilla.org/ko/docs/web/javascript/reference/global_objects/object]
+   내장 생성자의 모든 인스턴스는 Object.prototype의 프로퍼티와 메서드를 상속하며, Object.prototype의 프로토타입은 null을 가리킵니다. 즉, Object.prototype은 인스턴스에서 프로토타입 체인을 따라 거슬러 올라갈 수 있는 마지막 단계의 객체입니다.
+   인스턴스가 직접 상속한 프로토타입(가령, Date.prototype)과 Object.prototype에는 이름이 같은 메서드(가령, toString과 valueOf)가 있지만 프로토타입 체인에서는 호출한 인스턴스와 가까운 Date.prototype의 메서드를 사용합니다.
+
+3. Object.create로 객체 생성하기
+   Object.create 메서드를 사용하면 명시적으로 프로토타입을 지정해서 객체를 생성할 수 있습니다. 이 메서드를 사용하면 가장 간단하게 상속을 표현할 수 있습니다.
+   Object.create 메서드의 첫 번째 인수는 생성할 객체의 프로토타입입니다. 두 번째 인수를 지정하면 생성할 객체의 프로퍼티도 지정할 수 있습니다(선택 사항).
+
+```
+var person1 = {
+  name: 'Tom',
+  sayHello: function() { console.log('Hello! ' + this.name); }
+}
+var person2 = Object.create(person1);
+person2.name = 'Huck';
+person2.sayHello(); // -> 'Hello!  Huck'
+```
