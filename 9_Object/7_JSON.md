@@ -15,12 +15,12 @@ JSON.stringify(value[, replacer[, space]])
 
 - 주의할 점
 
-   NaN, Infinity, -Infinity는 null로 직렬화된다.
-   Date 객체는 ISO 포맷의 날짜 문자열로 직렬화된다. 단, JSON.parse은 이 문자열을 그래도 출력한다.
-   Function, RegExp, Error 객체, undefined, 심벌은 직렬화할 수 없다.
-   객체 자신이 가지고 있는 **열거 가능한 프로퍼티**만 직렬화된다.
-   직렬화할 수 없는 프로퍼티는 문자열로 출력되지 않는다.
-   프로퍼티 중에서 키카 심벌이 프로퍼티는 직렬화되지 않는다.
+  NaN, Infinity, -Infinity는 null로 직렬화된다.
+  Date 객체는 ISO 포맷의 날짜 문자열로 직렬화된다. 단, JSON.parse은 이 문자열을 그래도 출력한다.
+  Function, RegExp, Error 객체, undefined, 심벌은 직렬화할 수 없다.
+  객체 자신이 가지고 있는 **열거 가능한 프로퍼티**만 직렬화된다.
+  직렬화할 수 없는 프로퍼티는 문자열로 출력되지 않는다.
+  프로퍼티 중에서 키카 심벌이 프로퍼티는 직렬화되지 않는다.
 
 2. JSON 문자열을 자바스크립트 객체로 환원하기: JSON.parse
    JSON.parse 메서드는 인수로 받은 문자열을 자바스크립트 객체로 환원해서 반환합니다.
